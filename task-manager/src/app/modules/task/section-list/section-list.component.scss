@@ -1,0 +1,114 @@
+section {
+    display: table;
+}
+
+.example-label {
+    display: table-cell;
+    font-size: 14px;
+    margin-left: 8px;
+    min-width: 120px;
+}
+
+.example-button-row {
+    display: table-cell;
+    max-width: 600px;
+}
+
+.example-button-row .mat-mdc-button-base {
+    margin: 8px 8px 8px 0;
+}
+
+.example-flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.example-button-container {
+    display: flex;
+    justify-content: center;
+    width: 120px;
+}
+
+.section-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.section-card:hover {
+    background-color: #f0f0f0;
+}
+
+
+
+// .row2 {
+//     --bs-gutter-x: 1.5rem;
+//     --bs-gutter-y: 0;
+//     display: flex;
+//     flex-wrap: wrap;
+//     margin-top: calc(-1 * var(--bs-gutter-y));
+//     margin-right: calc(0 * var(--bs-gutter-x)) !important;
+//     /* Adjusted to remove comment */
+//     margin-left: calc(0 * var(--bs-gutter-x)) !important;
+//     /* Adjusted to remove comment */
+// }
+
+/* Header Section Styles */
+.header-section {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    /* Ensure header appears above other content */
+    background-color: #fff;
+    /* Adjust background color as needed */
+}
+
+/* Section Listing Styles */
+.section-list {
+    padding-top: 95px;
+    /* Ensure content starts below the fixed header */
+    overflow-y: auto;
+    /* Enable vertical scrolling */
+    height: calc(100vh - 100px);
+    /* Adjust height as needed */
+    /* Hide horizontal scrollbar */
+    overflow-x: hidden;
+}
+
+/* Additional Styles */
+.section-card {
+    height: 58px !important;
+    line-height: 0 !important;
+    border: 1px solid #cccccc6e;
+    border-radius: 1px;
+    margin-bottom: 0px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Adjustments for MatButton with icon */
+.button-with-icon span {
+    margin-right: 10px;
+    /* Adjust margin between text and icon */
+}
+
+.mdc-fab {
+    width: 35px;
+    height: 35px;
+}
+
+.del {
+    justify-content: flex-end;
+    /* padding-bottom: 8px; */
+    padding-top: -137px;
+    /* margin-bottom: 111px; */
+    margin-top: -3px;
+    /* padding-left: 10px; */
+    /* margin-right: 8px; */
+    padding-right: 22px;
+}

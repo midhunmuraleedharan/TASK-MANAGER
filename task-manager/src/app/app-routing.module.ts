@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: 'tasks',
-    loadChildren: () => import('../app/modules/task/task.module').then(m => m.TaskModule)
+    loadChildren: () => import('./modules/task/task.module').then(m => m.TaskModule)
   },
   { path: '', redirectTo: 'tasks', pathMatch: 'full' },
   { path: '**', redirectTo: 'tasks' }
