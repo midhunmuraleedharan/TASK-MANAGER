@@ -23,6 +23,8 @@ export class storageService {
     }
 
     getSections(): Section[] {
+        console.log("fun invoked");
+
         return this.sections;
     }
 
@@ -47,25 +49,31 @@ export class storageService {
         return this.tasks;
     }
 
-    addTask(sectionId: string, name: string, description: string, dueDate: Date, priority: Priority): void {
-        const id = uuidv4();
+    addTask(data: Task): void {
+        // const id = uuidv4();
 
-        const newTask: Task = {
-            id: id,
-            name: name,
-            priority: priority,
-            description: description,
-            dueDate: dueDate,
-            sectionId: sectionId
+        // const newTask: Task = {
+        //     id: id,
+        //     name: name,
+        //     priority: priority,
+        //     description: description,
+        //     dueDate: dueDate,
+        //     sectionId: sectionId
 
-        };
+        // };
 
-        this.tasks.push(newTask);
+        this.tasks.push(data);
         this.saveTaskoLocalStorage();
     }
     private saveTaskoLocalStorage(): void {
         localStorage.setItem('tasks', JSON.stringify(this.tasks));
     }
 
+
+    deleteSection(sectionId: string): void {
+        const sections = JSON.parse(localStorage.getItem('sections'));
+        const updatedSections = sections.filter(section => section.id != sectionId);
+        localStorage.setItem('sections', JSON.stringify(updatedSections));
+    }
 
 }

@@ -1,41 +1,72 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Priority, Section } from '../models';
 import { storageService } from 'src/app/services/storage.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddSectionComponent } from '../add-section/add-section.component';
+import { AddTaskComponent } from '../add-task/add-task.component';
+import { DeleteConformComponent } from '../delete-conform/delete-conform.component';
+// import { DeleteConformComponent } from '../delete-conform/delete-conform.component';
 @Component({
   selector: 'app-section-list',
   templateUrl: './section-list.component.html',
   styleUrls: ['./section-list.component.scss'],
 })
-export class SectionListComponent {
-  constructor(private dialog: MatDialog) { }
+export class SectionListComponent implements OnInit {
+  sections: Section[] = [];
+  constructor(private dialog: MatDialog, private storageService: storageService) {
+
+  }
+  ngOnInit(): void {
+    this.fetchSections()
+  }
+
+  fetchSections() {
+    this.sections = this.storageService.getSections();
+  }
 
   openAddSectionModal(): void {
     const dialogRef = this.dialog.open(AddSectionComponent, {
-      width: '400px' // Adjust width as needed
+      width: '400px'
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
-      // Handle the result from the modal
       if (result) {
-        // Perform any actions with the returned section object
         console.log('New Section:', result);
-        // Call a method to add the section to your data or perform other actions
       }
     });
   }
 
-  // sections: Section[] = [];
+  openAddTaskModal(): void {
+    const dialogRef = this.dialog.open(AddTaskComponent);
 
-  // constructor(private storageService: storageService) {
-  //   this.sections = this.storageService.getSections();
-  // }
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('New Task:', result);
+      }
+    });
+  }
 
-  // addSection(title: string, priority: Priority): void {
-  //   this.storageService.addSection(title, priority);
-  //   this.sections = this.storageService.getSections();
-  // }
+  confirmDelete(sectionId: string): void {
+    const dialogRef = this.dialog.open(DeleteConformComponent, {
+      width: '300px',
+      data: { sectionId: sectionId }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log(result, "result", result.ssectionId);
+        this.deleteSection(sectionId);
+      }
+    });
+  }
+
+  deleteSection(sectionId: string): void {
+    this.storageService.deleteSection(sectionId);
+    const storedSections = localStorage.getItem('sections');
+    if (storedSections) {
+      this.sections = JSON.parse(storedSections);
+    }
+  }
 
 }
