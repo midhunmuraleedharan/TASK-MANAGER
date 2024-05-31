@@ -1,1 +1,22 @@
-<p>add-section works!</p>
+<!-- add-section-modal.component.html -->
+<mat-dialog-content>
+    <h2>Add New Section</h2>
+    <mat-form-field appearance="fill">
+        <mat-label>Title</mat-label>
+        <input matInput placeholder="Title" [(ngModel)]="title">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Priority</mat-label>
+        <mat-select [(ngModel)]="Priority">
+            <mat-option *ngFor="let p of priorities" [value]="p">{{ p }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button (click)="cancel()">Cancel</button>
+    <button mat-button>Save</button>
+</mat-dialog-actions>
+
+
+
+<!-- (click)="save()" -->

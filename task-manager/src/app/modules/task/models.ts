@@ -36,7 +36,7 @@ export class Task {
 
 // Enum for Priority
 export enum Priority {
-    High = 'High',
-    Normal = 'Normal',
-    Low = 'Low'
+    High = 'HEIGH',
+    Normal = 'NORMAL',
+    Low = 'LOW'
 }
