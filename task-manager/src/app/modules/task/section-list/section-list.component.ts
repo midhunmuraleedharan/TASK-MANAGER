@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { Priority, Section } from '../models';
+import { Priority, Section, Task } from '../models';
 import { storageService } from 'src/app/services/storage.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddSectionComponent } from '../add-section/add-section.component';
 import { AddTaskComponent } from '../add-task/add-task.component';
 import { DeleteConformComponent } from '../delete-conform/delete-conform.component';
+import { ShowTasksComponent } from '../show-tasks/show-tasks.component';
 // import { DeleteConformComponent } from '../delete-conform/delete-conform.component';
 @Component({
   selector: 'app-section-list',
@@ -67,6 +68,15 @@ export class SectionListComponent implements OnInit {
     if (storedSections) {
       this.sections = JSON.parse(storedSections);
     }
+  }
+
+
+  openTasksModal(sectionId: string): void {
+    this.dialog.open(ShowTasksComponent, {
+      width: '80%',
+      height: '80%',
+      data: { sectionId: sectionId }
+    });
   }
 
 }

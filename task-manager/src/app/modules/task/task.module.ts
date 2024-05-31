@@ -17,6 +17,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DeleteConformComponent } from './delete-conform/delete-conform.component';
+import { ShowTasksComponent } from './show-tasks/show-tasks.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 // import { SectionListComponent } from './task/section-list/section-list.component';
 // import { AddSectionComponent } from './task/add-section/add-section.component';
 // import { AddTaskComponent } from './task/add-task/add-task.component';
@@ -27,7 +29,8 @@ import { DeleteConformComponent } from './delete-conform/delete-conform.componen
     SectionListComponent,
     AddSectionComponent,
     AddTaskComponent,
-    DeleteConformComponent
+    DeleteConformComponent,
+    ShowTasksComponent
   ],
   imports: [
     CommonModule,
@@ -43,6 +46,7 @@ import { DeleteConformComponent } from './delete-conform/delete-conform.componen
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    DragDropModule,
     ToastrModule.forRoot({ // ToastrModule added
       timeOut: 3000,
       positionClass: 'toast-top-right',
