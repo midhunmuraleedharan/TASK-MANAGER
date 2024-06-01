@@ -7,6 +7,8 @@ import { AddSectionComponent } from '../add-section/add-section.component';
 import { AddTaskComponent } from '../add-task/add-task.component';
 import { DeleteConformComponent } from '../delete-conform/delete-conform.component';
 import { ShowTasksComponent } from '../show-tasks/show-tasks.component';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { EditSectionComponent } from '../edit-section/edit-section.component';
 // import { DeleteConformComponent } from '../delete-conform/delete-conform.component';
 @Component({
   selector: 'app-section-list',
@@ -15,15 +17,27 @@ import { ShowTasksComponent } from '../show-tasks/show-tasks.component';
 })
 export class SectionListComponent implements OnInit {
   sections: Section[] = [];
+  task: Task[] = [];
   constructor(private dialog: MatDialog, private storageService: storageService) {
 
   }
   ngOnInit(): void {
     this.fetchSections()
+    this.fetchTasks();
   }
 
+  // fetchSections() {
+  //   this.sections = this.storageService.getSections();
+  // }
+
   fetchSections() {
-    this.sections = this.storageService.getSections();
+    this.storageService.sections$.subscribe(sections => {
+      this.sections = this.sortSections(sections);
+    });
+  }
+
+  fetchTasks() {
+    this.task = this.storageService.getTasks();
   }
 
   openAddSectionModal(): void {
@@ -76,6 +90,54 @@ export class SectionListComponent implements OnInit {
       width: '80%',
       height: '80%',
       data: { sectionId: sectionId }
+    });
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.sections, event.previousIndex, event.currentIndex);
+  }
+
+  getPriorityClass(priority: string): string {
+    switch (priority) {
+      case 'HIGH':
+        return 'priority-high';
+      case 'NORMAL':
+        return 'priority-normal';
+      case 'LOW':
+        return 'priority-low';
+      default:
+        return '';
+    }
+  }
+
+  getPriorityValue(priority: Priority): number {
+    switch (priority) {
+      case 'HIGH': return 3;
+      case 'NORMAL': return 2;
+      case 'LOW': return 1;
+      default: return 0;
+    }
+  }
+
+  sortSections(sections: Section[]): Section[] {
+    return sections.sort((a, b) => {
+      if (a.priority === b.priority) {
+        return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+      }
+      return this.getPriorityValue(b.priority) - this.getPriorityValue(a.priority);
+    });
+  }
+
+  openEditSectionModal(section: Section): void {
+    const dialogRef = this.dialog.open(EditSectionComponent, {
+      width: '400px',
+      data: { section }
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if (result) {
+        console.log('Edited Section:', result);
+      }
     });
   }
 

@@ -1,19 +1,21 @@
 <!-- Header Section -->
 <div class="container-fluid header-section">
-    <div class="row mt-3">
-        <div class="col-lg-6 col-md-6 col-sm-12 d-flex" style="align-items: flex-start;">
-            <h1 class="text-center" style="padding-left: 8px;font-weight: bold;font-size: 30px;">TASKS</h1>
+    <div class="row px-2 py-4">
+        <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="mb-2" style="font-weight: bold;font-size: 30px;">TASKS</div>
+            <div class="text-secondary" style="font-weight:300 ;font-size: 17px;letter-spacing: -0.20px;">
+                {{task.length}}
+                remaining tasks</div>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 d-flex text-right" style="justify-content: flex-end;">
             <section>
                 <div class="example-button-row">
                     <div class="example-flex-container">
-                        <button mat-flat-button color="primary" class="button-with-icon"
-                            (click)="openAddSectionModal()">
+                        <button mat-flat-button class="section-btn rounded-pill" (click)="openAddSectionModal()">
                             <span>Add Section</span><mat-icon>add</mat-icon>
                         </button>
 
-                        <button mat-flat-button color="primary" class="button-with-icon" (click)="openAddTaskModal()">
+                        <button mat-flat-button color="primary" class="rounded-pill" (click)="openAddTaskModal()">
                             <span>Add Task</span><mat-icon>add</mat-icon>
                         </button>
                     </div>
@@ -26,20 +28,39 @@
 <!-- Section Listing -->
 <div class="container-fluid section-list">
     <div class="row mt-3">
-        <div class="col-12">
+        <div class="col-12 p-0">
             <!-- *ngFor="let section of sections"  (click)="viewTasks(section)"-->
             <ng-container *ngIf="sections.length > 0; else noSections">
-                <div class="section-card" *ngFor="let section of sections">
-                    <div class="row">
-                        <div class="col-6" (click)="openTasksModal(section?.id)">
-                            <h3 style="font-size: 20px;font-weight: 500;padding-left: 8px;">
-                                {{section?.title}}</h3>
-                        </div>
-                        <div class="col-6 d-flex del">
-                            <button mat-fab color="primary" aria-label="Delete section"
-                                (click)="confirmDelete(section.id)">
-                                <mat-icon>delete</mat-icon>
-                            </button>
+                <div class="card">
+                    <div class="card-body p-0" cdkDropList (cdkDropListDropped)="drop($event)">
+                        <div class="section-card" *ngFor="let section of sections; let i = index" cdkDrag>
+                            <div class="row">
+                                <div class="col-6" (click)="openTasksModal(section?.id)" matTooltip="View Tasks">
+                                    <!-- <button mat-fab class="bg-secondary">
+                                        <mat-icon>check</mat-icon>
+                                    </button> -->
+                                    <h3 style="font-size: 20px;font-weight: 500;padding-left: 8px;">
+                                        {{section?.title}}</h3>
+                                </div>
+                                <div class="col-3 d-flex del">
+                                    <span [ngClass]="getPriorityClass(section.priority)" class="priority-badge"
+                                        matTooltip="Priority">
+                                        {{ section?.priority | camelCase}}
+                                    </span>
+                                </div>
+                                <div class="col-3 d-flex del">
+                                    <button mat-fab color="primary" aria-label="Delete section"
+                                        (click)="confirmDelete(section.id)" matTooltip="Delete Section">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+
+                                    <button mat-icon-button matTooltip="Edit Section"
+                                        (click)="openEditSectionModal(section)">
+                                        <mat-icon>more_vert</mat-icon>
+                                    </button>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>

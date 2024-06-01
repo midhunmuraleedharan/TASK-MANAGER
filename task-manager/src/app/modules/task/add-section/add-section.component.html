@@ -8,7 +8,7 @@
     <mat-form-field appearance="fill">
         <mat-label>Priority</mat-label>
         <mat-select [(ngModel)]="Priority">
-            <mat-option *ngFor="let p of priorities" [value]="p">{{ p }}</mat-option>
+            <mat-option *ngFor="let p of priorities" [value]="p">{{ p | camelCase}}</mat-option>
         </mat-select>
     </mat-form-field>
 </mat-dialog-content>

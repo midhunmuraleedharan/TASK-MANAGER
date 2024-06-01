@@ -1,0 +1,40 @@
+<!-- <h2>Edit Section</h2>
+<form>
+    <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input matInput [(ngModel)]="title" name="title" required>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Priority</mat-label>
+        <mat-select [(ngModel)]="priority" name="priority">
+            <mat-option *ngFor="let priority of priorities" [value]="priority">{{ priority }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div>
+        <button mat-button (click)="cancel()">Cancel</button>
+        <button mat-button (click)="save()">Save</button>
+    </div>
+</form> -->
+
+<!-- add-section-modal.component.html -->
+<mat-dialog-content>
+    <h2>Edit Section</h2>
+    <mat-form-field appearance="fill">
+        <mat-label>Title</mat-label>
+        <input matInput [(ngModel)]="title" name="title">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Priority</mat-label>
+        <mat-select [(ngModel)]="priority" name="priority">
+            <mat-option *ngFor="let p of priorities" [value]="p">{{ p | camelCase}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button (click)="cancel()">Cancel</button>
+    <button mat-button (click)="save()">Save</button>
+</mat-dialog-actions>
+
+
+
+<!--  -->

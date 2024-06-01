@@ -19,6 +19,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { DeleteConformComponent } from './delete-conform/delete-conform.component';
 import { ShowTasksComponent } from './show-tasks/show-tasks.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { SharedModule } from '../shared/shared.module';
+import { EditSectionComponent } from './edit-section/edit-section.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 // import { SectionListComponent } from './task/section-list/section-list.component';
 // import { AddSectionComponent } from './task/add-section/add-section.component';
 // import { AddTaskComponent } from './task/add-task/add-task.component';
@@ -30,7 +33,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     AddSectionComponent,
     AddTaskComponent,
     DeleteConformComponent,
-    ShowTasksComponent
+    ShowTasksComponent,
+    EditSectionComponent,
   ],
   imports: [
     CommonModule,
@@ -47,6 +51,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatDatepickerModule,
     MatNativeDateModule,
     DragDropModule,
+    SharedModule,
+    MatTooltipModule,
     ToastrModule.forRoot({ // ToastrModule added
       timeOut: 3000,
       positionClass: 'toast-top-right',

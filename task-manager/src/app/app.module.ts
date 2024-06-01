@@ -14,6 +14,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ShowTasksComponent } from './modules/task/show-tasks/show-tasks.component';
+import { SharedModule } from './modules/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ShowTasksComponent } from './modules/task/show-tasks/show-tasks.compone
     MatDatepickerModule,
     MatNativeDateModule,
     DragDropModule,
+    SharedModule,
     ToastrModule.forRoot({ // ToastrModule added
       timeOut: 3000,
       positionClass: 'toast-top-right',
