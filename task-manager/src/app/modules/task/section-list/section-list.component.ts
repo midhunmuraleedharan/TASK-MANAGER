@@ -9,6 +9,7 @@ import { DeleteConformComponent } from '../delete-conform/delete-conform.compone
 import { ShowTasksComponent } from '../show-tasks/show-tasks.component';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { EditSectionComponent } from '../edit-section/edit-section.component';
+import { ToastrService } from 'ngx-toastr';
 // import { DeleteConformComponent } from '../delete-conform/delete-conform.component';
 @Component({
   selector: 'app-section-list',
@@ -18,7 +19,7 @@ import { EditSectionComponent } from '../edit-section/edit-section.component';
 export class SectionListComponent implements OnInit {
   sections: Section[] = [];
   task: Task[] = [];
-  constructor(private dialog: MatDialog, private storageService: storageService) {
+  constructor(private dialog: MatDialog, private storageService: storageService, private toastr: ToastrService) {
 
   }
   ngOnInit(): void {
@@ -139,6 +140,11 @@ export class SectionListComponent implements OnInit {
         console.log('Edited Section:', result);
       }
     });
+  }
+
+  completeSection(sectionId: string): void {
+    this.toastr.success("compleated")
+
   }
 
 }

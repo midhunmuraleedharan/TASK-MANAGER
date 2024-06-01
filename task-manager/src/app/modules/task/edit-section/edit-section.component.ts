@@ -1,14 +1,3 @@
-// import { Component } from '@angular/core';
-
-// @Component({
-//   selector: 'app-edit-section',
-//   templateUrl: './edit-section.component.html',
-//   styleUrls: ['./edit-section.component.scss']
-// })
-// export class EditSectionComponent {
-
-// }
-
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
@@ -41,7 +30,7 @@ export class EditSectionComponent {
 
   save(): void {
     this.storageService.updateSection(this.data.section.id, this.title, this.priority);
-    this.toastr.success('Section Updated Successfully');
+    this.toastr.info('Section Updated Successfully');
     this.cancel();
   }
 }

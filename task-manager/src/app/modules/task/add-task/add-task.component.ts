@@ -49,7 +49,7 @@ export class AddTaskComponent implements OnInit {
     if (this.taskForm.valid) {
       const newTask: Task = {
         id: uuidv4(),
-        sectionId: this.taskForm.value.section, // Assign the actual section ID when integrating
+        sectionId: this.taskForm.value.section,
         name: this.taskForm.value.name,
         description: this.taskForm.value.description,
         dueDate: this.taskForm.value.dueDate,

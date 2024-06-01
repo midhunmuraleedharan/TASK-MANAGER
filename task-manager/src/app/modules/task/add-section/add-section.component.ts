@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
-// import { Priority } from '../models/priority.enum';
 import { storageService } from 'src/app/services/storage.service';
 
 @Component({
@@ -28,9 +27,7 @@ export class AddSectionComponent {
     console.log(this.title, this.Priority, "this.title, this.Priority");
 
     this.storageService.addSection(this.title, this.Priority);
-    this.toastr.success("Section Created Successfully");
+    this.toastr.info("Section Created Successfully");
     this.cancel()
-    // Emit the section object to the parent component
-    // this.dialogRef.close(section);
   }
 }

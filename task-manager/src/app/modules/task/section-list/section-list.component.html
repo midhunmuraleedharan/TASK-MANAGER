@@ -29,16 +29,13 @@
 <div class="container-fluid section-list">
     <div class="row mt-3">
         <div class="col-12 p-0">
-            <!-- *ngFor="let section of sections"  (click)="viewTasks(section)"-->
             <ng-container *ngIf="sections.length > 0; else noSections">
                 <div class="card">
                     <div class="card-body p-0" cdkDropList (cdkDropListDropped)="drop($event)">
                         <div class="section-card" *ngFor="let section of sections; let i = index" cdkDrag>
                             <div class="row">
                                 <div class="col-6" (click)="openTasksModal(section?.id)" matTooltip="View Tasks">
-                                    <!-- <button mat-fab class="bg-secondary">
-                                        <mat-icon>check</mat-icon>
-                                    </button> -->
+
                                     <h3 style="font-size: 20px;font-weight: 500;padding-left: 8px;">
                                         {{section?.title}}</h3>
                                 </div>
@@ -48,7 +45,7 @@
                                         {{ section?.priority | camelCase}}
                                     </span>
                                 </div>
-                                <div class="col-3 d-flex del">
+                                <!-- <div class="col-3 d-flex del">
                                     <button mat-fab color="primary" aria-label="Delete section"
                                         (click)="confirmDelete(section.id)" matTooltip="Delete Section">
                                         <mat-icon>delete</mat-icon>
@@ -58,7 +55,27 @@
                                         (click)="openEditSectionModal(section)">
                                         <mat-icon>more_vert</mat-icon>
                                     </button>
+                                </div> -->
+                                <div class="col-3 d-flex del">
+                                    <button mat-icon-button [matMenuTriggerFor]="menu" matTooltip="Options">
+                                        <mat-icon>more_vert</mat-icon>
+                                    </button>
+                                    <mat-menu #menu="matMenu">
+                                        <button mat-menu-item (click)="openEditSectionModal(section)">
+                                            <mat-icon>edit</mat-icon>
+                                            <span>Edit</span>
+                                        </button>
+                                        <button mat-menu-item (click)="confirmDelete(section.id)">
+                                            <mat-icon>delete</mat-icon>
+                                            <span>Delete</span>
+                                        </button>
+                                        <button mat-menu-item (click)="completeSection(section.id)">
+                                            <mat-icon>done</mat-icon>
+                                            <span>Complete</span>
+                                        </button>
+                                    </mat-menu>
                                 </div>
+
 
                             </div>
                         </div>
