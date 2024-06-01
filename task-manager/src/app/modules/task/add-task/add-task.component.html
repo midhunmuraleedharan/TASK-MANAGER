@@ -34,7 +34,7 @@
                 <mat-label>Priority</mat-label>
                 <mat-select formControlName="priority">
                     <mat-option *ngFor="let priority of priorityOptions" [value]="priority">
-                        {{ priority }}
+                        {{ priority | camelCase}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
