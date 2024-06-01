@@ -1,24 +1,77 @@
+// .task-list {
+//     padding: 20px;
+// }
+
+// .task-heading {
+//     font-size: 24px;
+//     font-weight: bold;
+//     margin-bottom: 20px;
+// }
+
+// .task-container {
+//     display: grid;
+//     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+//     gap: 20px;
+// }
+
+// .task-card {
+//     background-color: #fff;
+//     border: 1px solid #ddd;
+//     border-radius: 8px;
+//     padding: 15px;
+//     cursor: move;
+// }
+
+// .task-content {
+//     display: flex;
+//     flex-direction: column;
+// }
+
+// .task-name {
+//     font-weight: bold;
+//     font-size: 18px;
+// }
+
+// .task-description {
+//     margin-top: 10px;
+// }
+
+// .task-meta {
+//     margin-top: 10px;
+//     display: flex;
+//     justify-content: space-between;
+//     font-size: 14px;
+// }
+
+// .task-due-date,
+// .task-priority {
+//     color: #666;
+// }
+
 .task-list {
-    padding: 20px;
+    margin: 20px;
 }
 
 .task-heading {
+    text-align: center;
     font-size: 24px;
-    font-weight: bold;
     margin-bottom: 20px;
 }
 
 .task-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .task-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
     padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     cursor: move;
 }
 
@@ -27,23 +80,48 @@
     flex-direction: column;
 }
 
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
 .task-name {
-    font-weight: bold;
     font-size: 18px;
+    font-weight: bold;
 }
 
 .task-description {
-    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .task-meta {
-    margin-top: 10px;
     display: flex;
     justify-content: space-between;
-    font-size: 14px;
 }
 
 .task-due-date,
 .task-priority {
-    color: #666;
+    font-size: 14px;
+}
+
+.high-priority {
+    color: red;
+}
+
+.normal-priority {
+    color: blue;
+}
+
+.low-priority {
+    color: green;
+}
+
+.no-tasks-placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    color: #777;
 }

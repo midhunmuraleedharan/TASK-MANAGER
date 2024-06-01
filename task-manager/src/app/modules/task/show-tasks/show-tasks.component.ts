@@ -40,4 +40,15 @@ export class ShowTasksComponent implements OnInit {
   // closeDialog(): void {
   //   this.dialogRef.close();
   // }
+  editTask(task: Task) {
+    // Open a dialog to edit the task
+  }
+  deleteTask(taskId: string) {
+    this.storageService.deleteTask(taskId);
+    this.fetchTasks();
+  }
+
+  completeTask(task: Task) {
+    // Mark the task as complete
+  }
 }

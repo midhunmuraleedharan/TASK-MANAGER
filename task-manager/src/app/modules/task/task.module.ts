@@ -22,6 +22,10 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { SharedModule } from '../shared/shared.module';
 import { EditSectionComponent } from './edit-section/edit-section.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatMenuModule } from '@angular/material/menu';
+
+
 // import { SectionListComponent } from './task/section-list/section-list.component';
 // import { AddSectionComponent } from './task/add-section/add-section.component';
 // import { AddTaskComponent } from './task/add-task/add-task.component';
@@ -53,6 +57,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     DragDropModule,
     SharedModule,
     MatTooltipModule,
+    MatInputModule,
+    MatSnackBarModule,
+    MatMenuModule,
     ToastrModule.forRoot({ // ToastrModule added
       timeOut: 3000,
       positionClass: 'toast-top-right',

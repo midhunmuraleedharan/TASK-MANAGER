@@ -76,4 +76,13 @@ export class storageService {
         this.sectionsSubject.next(updatedSections);
         this.saveSectionsToLocalStorage(updatedSections);
     }
+
+    deleteTask(taskId: string): void {
+        this.tasks = this.tasks.filter(task => task.id !== taskId);
+        this.saveTasksToLocalStorage();
+    }
+
+    private saveTasksToLocalStorage(): void {
+        localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    }
 }
