@@ -7,15 +7,24 @@
 <div class="task-list">
     <h2 class="task-heading">Tasks</h2>
     <div class="task-container" cdkDropList (cdkDropListDropped)="onTaskDropped($event)">
-        <div class="task-card" *ngFor="let task of tasks" cdkDrag>
-            <div class="task-content">
-                <div class="task-name">{{ task.name }}</div>
-                <div class="task-description">{{ task.description }}</div>
-                <div class="task-meta">
-                    <div class="task-due-date">Due Date: {{ task.dueDate | date }}</div>
-                    <div class="task-priority">Priority: {{ task.priority }}</div>
+        <ng-container *ngIf="tasks.length > 0; else noSections">
+            <div class="task-card" *ngFor="let task of tasks" cdkDrag>
+                <div class="task-content">
+                    <div class="task-name">{{ task.name }}</div>
+                    <div class="task-description">{{ task.description }}</div>
+                    <div class="task-meta">
+                        <div class="task-due-date">Due Date: {{ task.dueDate | date }}</div>
+                        <div class="task-priority">Priority: {{ task.priority }}</div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </ng-container>
+
+        <ng-template #noSections>
+            <div class="no-sections-placeholder">
+                <p style="display: flex;justify-content: center;font-size: 22px;">There is no tasks available
+                    now.</p>
+            </div>
+        </ng-template>
     </div>
 </div>
