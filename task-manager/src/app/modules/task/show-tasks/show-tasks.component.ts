@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Task } from '../models';
 import { storageService } from 'src/app/services/storage.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-show-tasks',
@@ -14,7 +15,7 @@ export class ShowTasksComponent implements OnInit {
   tasks: Task[] = [];
 
   constructor(private storageService: storageService, public dialogRef: MatDialogRef<ShowTasksComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { this.sectionid = data.sectionId }
+    @Inject(MAT_DIALOG_DATA) public data: any, private toastr: ToastrService) { this.sectionid = data.sectionId }
 
   ngOnInit(): void {
     this.fetchTasks();
@@ -49,6 +50,7 @@ export class ShowTasksComponent implements OnInit {
   }
 
   completeTask(task: Task) {
+    this.toastr.success("completed")
     // Mark the task as complete
   }
 }
