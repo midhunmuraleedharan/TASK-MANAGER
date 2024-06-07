@@ -25,6 +25,15 @@ export class SectionListComponent implements OnInit {
   ngOnInit(): void {
     this.fetchSections()
     this.fetchTasks();
+    this.getApiTest();
+  }
+
+  getApiTest() {
+    this.storageService.getConfig().subscribe({
+      next(res) {
+        console.log(res, "response")
+      },
+    });
   }
 
   // fetchSections() {

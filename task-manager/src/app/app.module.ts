@@ -17,6 +17,7 @@ import { ShowTasksComponent } from './modules/task/show-tasks/show-tasks.compone
 import { SharedModule } from './modules/shared/shared.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatInputModule,
     MatSnackBarModule,
     MatMenuModule,
+    HttpClientModule,
     ToastrModule.forRoot({ // ToastrModule added
       timeOut: 3000,
       positionClass: 'toast-top-right',

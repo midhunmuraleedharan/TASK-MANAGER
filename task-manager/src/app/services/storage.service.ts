@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { v4 as uuidv4 } from 'uuid';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Priority, Section, Task } from '../modules/task/models';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable({
@@ -13,7 +14,9 @@ export class storageService {
 
     private tasks: Task[] = [];
 
-    constructor() {
+    configUrl: 'https://jsonplaceholder.typicode.com/todos/1';
+
+    constructor(private http: HttpClient) {
         const storedSections = localStorage.getItem('sections');
         if (storedSections) {
             this.sectionsSubject.next(JSON.parse(storedSections));
@@ -85,4 +88,10 @@ export class storageService {
     private saveTasksToLocalStorage(): void {
         localStorage.setItem('tasks', JSON.stringify(this.tasks));
     }
+
+
+    getConfig() {
+        return this.http.get<any>(this.configUrl);
+    }
+    // https://jsonplaceholder.typicode.com/todos/1
 }
